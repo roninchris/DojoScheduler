@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dojo Scheduler • Início</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <main class="container" style="padding:2rem 1rem">
+    <section class="hero">
+      <img src="hero.jpg" alt="Artes marciais" style="width:100%;height:280px;object-fit:cover"/>
+      <div class="card" style="border-radius:0">
+        <h2 class="card-title">Bem-vindo ao Dojo Scheduler</h2>
+        <p class="item-sub">Gerencie usuários, crie aulas e faça reservas para o seu Dojo.</p>
+        <div style="display:flex;gap:.5rem;margin-top:1rem">
+          <a class="btn btn-primary" href="usuarios.html">Cadastrar Usuário</a>
+          <a class="btn btn-outline" href="aulas.html">Criar Aula</a>
+          <a class="btn btn-outline" href="reservas.html">Reservar Vaga</a>
+        </div>
+      </div>
+    </section>
+    <section class="grid grid-2" style="margin-top:1rem">
+      <div class="card">
+        <h3 class="card-title">Como começar</h3>
+        <ol class="item-sub">
+          <li>1) Cadastre um usuário</li>
+          <li>2) Crie uma aula</li>
+          <li>3) Faça uma reserva</li>
+        </ol>
+      </div>
+
+    </section>
+  </main>
+  <script type="module">
+    import { mountLayout } from './util.js';
+    mountLayout("home");
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Reservas • Dojo Scheduler</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <main class="container" style="padding:2rem 1rem">
+    <div class="grid grid-2">
+      <section class="card">
+        <h2 class="card-title">Reservar Vaga</h2>
+        <form id="formReserva" class="form-grid">
+          <label class="form-label">Usuário
+            <select id="selUsuario" name="usuario_id" required class="input"></select>
+          </label>
+          <label class="form-label">Aula
+            <select id="selAula" name="aula_id" required class="input"></select>
+          </label>
+          <button class="btn btn-primary">Reservar</button>
+        </form>
+      </section>
+      <section class="card">
+        <h2 class="card-title">Minhas/Reservas</h2>
+        <ul id="listaReservas" class="list"></ul>
+      </section>
+    </div>
+  </main>
+  <script type="module">
+    import { mountLayout, api, toast } from './util.js';
+    mountLayout("reservas");
+
+    const $ = (q)=>document.querySelector(q);
+    const el=(t,c)=>{const e=document.createElement(t); if(c) e.className=c; return e;};
+
+    function itemReserva(r){
+      const li = el("li","item");
+      li.innerHTML = `<div class="item-title">Reserva #${r.id}</div>
+                      <span class="action" data-id="${r.id}">Cancelar</span>`;
+      li.querySelector(".action").onclick = async () => {
+        if(confirm("Deseja cancelar esta reserva?")){
+          const res = await api(`/reservas/${r.id}`, {method:"DELETE"});
+          if(res.ok) { loadReservas(); } else { toast("Erro ao cancelar"); }
+        }
+      };
+      return li;
+    }
+
+    async function loadUsuarios(){
+      const res = await api("/usuarios");
+      const sel = $("#selUsuario"); sel.innerHTML="";
+      if(res.ok){
+        res.data.forEach(u=>{
+          const opt = document.createElement("option");
+          opt.value=u.id; opt.textContent=`${u.nome} (${u.email})`;
+          sel.appendChild(opt);
+        });
+      }
+    }
+
+    async function loadAulas(){
+      const res = await api("/aulas");
+      const sel = $("#selAula"); sel.innerHTML="";
+      if(res.ok){
+        res.data.forEach(a=>{
+          const opt = document.createElement("option");
+          opt.value=a.id; opt.textContent=`${a.titulo} • ${new Date(a.data_hora).toLocaleString()}`;
+          sel.appendChild(opt);
+        });
+      }
+    }
+
+    async function loadReservas(){
+      const res = await api("/reservas");
+      const ul = $("#listaReservas"); ul.innerHTML="";
+      if(res.ok){
+        res.data.forEach(r=>ul.appendChild(itemReserva(r)));
+      }
+    }
+
+    $("#formReserva").addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const payload = Object.fromEntries(fd.entries());
+      payload.usuario_id = Number(payload.usuario_id);
+      payload.aula_id = Number(payload.aula_id);
+      const res = await api("/reservas",{method:"POST", body: JSON.stringify(payload)});
+      if(!res.ok){ toast(res.data?.detail || "Erro ao reservar"); return; }
+      e.target.reset();
+      loadReservas();
+    });
+
+    async function loadAll(){
+      await Promise.all([loadUsuarios(), loadAulas(), loadReservas()]);
+    }
+
+    loadAll();
+  </script>
+</body>
+</html>
