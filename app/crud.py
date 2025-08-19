@@ -26,12 +26,12 @@ def delete_member(db: Session, member_id: int):
 
 # Classes
 def get_classes(db: Session):
-    # also compute enrolledMembers
+    
     classes = db.query(models.ClassModel).all()
     result = []
     for c in classes:
         enrolled = db.query(func.count(models.Booking.id)).filter(models.Booking.class_id == c.id).scalar()
-        # attach as attribute for response mapping
+     
         c.enrolledMembers = enrolled
         result.append(c)
     return result
