@@ -1,13 +1,15 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./data.db")
-connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./dojo.db")
 
-engine = create_engine(DATABASE_URL, echo=False, connect_args=connect_args)
+connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+engine = create_engine(DATABASE_URL, echo=False, future=True, connect_args=connect_args)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+
+class Base(DeclarativeBase):
+    pass
 
 def get_db():
     db = SessionLocal()
@@ -15,7 +17,3 @@ def get_db():
         yield db
     finally:
         db.close()
-
-def init_db():
-    from . import models  # noqa
-    Base.metadata.create_all(bind=engine)

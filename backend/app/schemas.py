@@ -1,41 +1,67 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr
+from typing import Optional
 from datetime import datetime
 
-class UsuarioBase(BaseModel):
-    nome: str = Field(..., min_length=2, max_length=100)
+# Auth
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+class TokenData(BaseModel):
+    email: Optional[str] = None
+
+class UserBase(BaseModel):
     email: EmailStr
+    full_name: Optional[str] = None
 
-class UsuarioCreate(UsuarioBase):
+class UserCreate(UserBase):
+    password: str
+
+class User(UserBase):
+    id: int
+    role: str
+
+    class Config:
+        from_attributes = True
+
+# Students
+class StudentBase(BaseModel):
+    name: str
+    email: Optional[EmailStr] = None
+    phone: Optional[str] = None
+
+class StudentCreate(StudentBase):
     pass
 
-class Usuario(UsuarioBase):
+class Student(StudentBase):
     id: int
     class Config:
         from_attributes = True
 
-class AulaBase(BaseModel):
-    titulo: str = Field(..., min_length=2, max_length=120)
-    descricao: str | None = Field(None, max_length=300)
-    data_hora: datetime
-    capacidade: int = Field(..., ge=1, le=100)
-    instrutor: str = Field(..., min_length=2, max_length=120)
+# Classes
+class MartialClassBase(BaseModel):
+    name: str
+    description: Optional[str] = None
+    capacity: int = 10
 
-class AulaCreate(AulaBase):
+class MartialClassCreate(MartialClassBase):
     pass
 
-class Aula(AulaBase):
+class MartialClass(MartialClassBase):
     id: int
     class Config:
         from_attributes = True
 
-class ReservaBase(BaseModel):
-    usuario_id: int
-    aula_id: int
+# Enrollments
+class EnrollmentBase(BaseModel):
+    student_id: int
+    class_id: int
 
-class ReservaCreate(ReservaBase):
+class EnrollmentCreate(EnrollmentBase):
     pass
 
-class Reserva(ReservaBase):
+class Enrollment(EnrollmentBase):
     id: int
+    created_at: datetime
     class Config:
         from_attributes = True

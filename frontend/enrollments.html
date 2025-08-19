@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-br" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reservas • Dojo Scheduler</title>
+  <link rel="icon" type="image/png" href="./assets/icons/favicon-32.png">
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./enrollments.js"></script>
+</head>
+<body class="page page-enrollments">
+  <header class="topbar">
+    <a href="./index.html" class="brand"><img src="./assets/logo-dojo-scheduler.svg" class="logo" alt="Dojo Scheduler" /></a>
+    <nav>
+      <a href="./users.html">Usuários</a>
+      <a href="./students.html">Alunos</a>
+      <a href="./classes.html">Aulas</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Reservas</h1>
+    <form id="enroll-form" class="card">
+      <label>Aluno <input type="number" name="student_id" placeholder="ID do aluno" required /></label>
+      <label>Aula <input type="number" name="class_id" placeholder="ID da aula" required /></label>
+      <button class="btn primary">Reservar</button>
+    </form>
+    <table id="enroll-table" class="table"></table>
+  </main>
+</body>
+</html>

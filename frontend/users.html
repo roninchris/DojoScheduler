@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Usuários • Dojo Scheduler</title>
+  <link rel="icon" type="image/png" href="./assets/icons/favicon-32.png">
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./users.js"></script>
+</head>
+<body class="page page-users">
+  <header class="topbar">
+    <a href="./index.html" class="brand"><img src="./assets/logo-dojo-scheduler.svg" class="logo" alt="Dojo Scheduler" /></a>
+    <nav>
+      <a href="./students.html">Alunos</a>
+      <a href="./classes.html">Aulas</a>
+      <a href="./enrollments.html">Reservas</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Usuários</h1>
+    <form id="register-form" class="card">
+      <label>Email <input type="email" name="email" required /></label>
+      <label>Nome <input type="text" name="full_name" /></label>
+      <label>Senha <input type="password" name="password" required /></label>
+      <button class="btn primary">Criar</button>
+    </form>
+    <form id="login-form" class="card">
+      <label>Email <input type="email" name="email" required /></label>
+      <label>Senha <input type="password" name="password" required /></label>
+      <button class="btn secondary">Login</button>
+    </form>
+    <pre id="auth-status" class="status"></pre>
+  </main>
+</body>
+</html>

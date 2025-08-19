@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-br" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aulas • Dojo Scheduler</title>
+  <link rel="icon" type="image/png" href="./assets/icons/favicon-32.png">
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./classes.js"></script>
+</head>
+<body class="page page-classes">
+  <header class="topbar">
+    <a href="./index.html" class="brand"><img src="./assets/logo-dojo-scheduler.svg" class="logo" alt="Dojo Scheduler" /></a>
+    <nav>
+      <a href="./users.html">Usuários</a>
+      <a href="./students.html">Alunos</a>
+      <a href="./enrollments.html">Reservas</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Aulas</h1>
+    <form id="class-form" class="card">
+      <label>Nome
+        <select name="name">
+          <option>Muay Thai</option>
+          <option>Taekwondo</option>
+          <option>Karate</option>
+        </select>
+      </label>
+      <label>Descrição <input type="text" name="description" /></label>
+      <label>Capacidade <input type="number" name="capacity" value="10" min="1" /></label>
+      <button class="btn primary">Salvar</button>
+    </form>
+    <table id="class-table" class="table"></table>
+  </main>
+</body>
+</html>

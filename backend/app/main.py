@@ -1,9 +1,11 @@
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import usuarios, aulas, reservas
-from .database import init_db
+from .database import Base, engine
+from .routers import auth, students, classes, enrollments
+from .models import User, Student, MartialClass, Enrollment
 
-app = FastAPI(title="Martial Arts Class Booking API", version="1.1.0")
+app = FastAPI(title="Dojo Scheduler API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -13,14 +15,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(usuarios.router, prefix="/usuarios", tags=["Usuários"])
-app.include_router(aulas.router, prefix="/aulas", tags=["Aulas"])
-app.include_router(reservas.router, prefix="/reservas", tags=["Reservas"])
+# Create tables
+Base.metadata.create_all(bind=engine)
 
-@app.on_event("startup")
-def on_startup():
-    init_db()
+# Routers
+app.include_router(auth.router)
+app.include_router(students.router)
+app.include_router(classes.router)
+app.include_router(enrollments.router)
 
-@app.get("/", tags=["Health"])
-def read_root():
+@app.get("/health")
+def health():
     return {"status": "ok"}
+
+if __name__ == "__main__":
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

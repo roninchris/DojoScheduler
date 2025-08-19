@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-br" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alunos • Dojo Scheduler</title>
+  <link rel="icon" type="image/png" href="./assets/icons/favicon-32.png">
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./students.js"></script>
+</head>
+<body class="page page-students">
+  <header class="topbar">
+    <a href="./index.html" class="brand"><img src="./assets/logo-dojo-scheduler.svg" class="logo" alt="Dojo Scheduler" /></a>
+    <nav>
+      <a href="./users.html">Usuários</a>
+      <a href="./classes.html">Aulas</a>
+      <a href="./enrollments.html">Reservas</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Alunos</h1>
+    <form id="student-form" class="card">
+      <label>Nome <input type="text" name="name" required /></label>
+      <label>Email <input type="email" name="email" /></label>
+      <label>Telefone <input type="text" name="phone" /></label>
+      <button class="btn primary">Salvar</button>
+    </form>
+    <table id="student-table" class="table"></table>
+  </main>
+</body>
+</html>
