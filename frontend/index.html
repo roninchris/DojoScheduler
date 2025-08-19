@@ -8,22 +8,38 @@
   <link rel="stylesheet" href="./styles.css" />
   <script defer src="./main.js"></script>
 </head>
-<body class="page page-home">
+<body class="page page-dashboard">
   <header class="topbar">
     <img src="./assets/logo-dojo-scheduler.svg" class="logo" alt="Dojo Scheduler" />
     <nav>
-      <a href="./users.html">Usuários</a>
+      <a href="./users.html">Inícion</a>
       <a href="./students.html">Alunos</a>
       <a href="./classes.html">Aulas</a>
       <a href="./enrollments.html">Reservas</a>
     </nav>
   </header>
   <main>
-    <h1>Dojo Scheduler</h1>
-    <p>Sistema para cadastrar alunos, criar aulas e reservar vagas (Muay Thai, Taekwondo e Karatê).</p>
+    <h1>Bem-vindo ao Dojo Scheduler</h1>
+    <p>Gerencie seus alunos, aulas e agendamentos com facilidade.</p>
+    <section class="card">
+      <div class="stats">
+        <div>
+          <label>Total de Alunos</label>
+          <input type="text" value="3" readonly>
+        </div>
+        <div>
+          <label>Total de Aulas</label>
+          <input type="text" value="4" readonly>
+        </div>
+      </div>
+      <div class="banner">
+        <p>Disciplina, Força, Respeito.</p>
+        <p>Os pilares do seu dojo, refletidos em sua gestão.</p>
+      </div>
+    </section>
     <section class="cta">
-      <a class="btn primary" href="./students.html">Cadastrar Alunos</a>
-      <a class="btn secondary" href="./classes.html">Criar Aulas</a>
+      <a class="btn primary" href="./students.html">Cadastrar Novo Aluno</a>
+      <a class="btn secondary" href="./classes.html">Criar Nova Aula</a>
     </section>
   </main>
 </body>

@@ -1,39 +1,40 @@
-:root{
+:root {
   --bg: #ffffff;
   --fg: #1a1528;
-  --primary: #6c5ce7; /* purple accent; replace with Figma brand */
-  --surface: #f5f5ff;
+  --primary: #ff0000; /* Tema vermelho */
+  --surface: #e5e5e5;
   --card: #ffffff;
   --muted: #6b7280;
   --border: #e5e7eb;
 }
 
-[data-theme="dark"]{
+[data-theme="dark"] {
   --bg: #261f3a;
   --fg: #f7f7ff;
-  --primary: #ffffff;
+  --primary: #ff0000;
   --surface: #1f1830;
   --card: #34285a;
   --muted: #bfbfe6;
   --border: #4b3f73;
 }
 
-*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto}
-.page{background:var(--bg);color:var(--fg);min-height:100vh}
-.topbar{display:flex;gap:24px;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0}
-.topbar nav a{color:var(--fg);text-decoration:none;margin:0 8px;opacity:.9}
-.logo{height:36px}
-main{max-width:980px;margin:24px auto;padding:0 16px}
-h1{font-size:28px;margin:16px 0}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin:16px 0;box-shadow:0 6px 20px rgba(0,0,0,.08)}
-label{display:flex;flex-direction:column;gap:6px;margin:8px 0}
-input,select{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--fg)}
-.btn{display:inline-block;padding:10px 14px;border-radius:999px;border:1px solid var(--border);text-decoration:none}
-.btn.primary{background:var(--primary);color:var(--bg);border-color:transparent}
-.btn.secondary{background:transparent;color:var(--fg)}
-.table{width:100%;border-collapse:collapse;margin-top:8px}
-.table th,.table td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
-.status{white-space:pre-wrap}
-/* Page-specific inversions (per your Figma idea) */
-.page-users .btn.primary, .page-enrollments .btn.primary { background: #ffffff; color:#261f3a; }
-.page-users [data-theme="dark"], .page-enrollments [data-theme="dark"] { --primary:#ffffff; }
+* { box-sizing: border-box; } body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto; }
+.page { background: var(--bg); color: var(--fg); min-height: 100vh; }
+.topbar { display: flex; gap: 24px; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; }
+.topbar nav a { color: var(--fg); text-decoration: none; margin: 0 8px; opacity: .9; }
+.logo { height: 36px; }
+main { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+h1 { font-size: 28px; margin: 16px 0; color: var(--primary); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin: 16px 0; box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+label { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; }
+input, select { padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--fg); }
+.btn { display: inline-block; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); text-decoration: none; }
+.btn.primary { background: var(--primary); color: var(--bg); border-color: transparent; }
+.btn.secondary { background: transparent; color: var(--fg); }
+.table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.table th, .table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.status { white-space: pre-wrap; }
+.page-dashboard .card { display: flex; justify-content: space-between; align-items: center; }
+.page-dashboard .card .stats { display: flex; gap: 20px; }
+.page-dashboard .card .stats div { text-align: center; }
+.page-dashboard .card .banner { background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/600x400'); background-size: cover; color: #fff; padding: 20px; border-radius: 10px; text-align: center; }
