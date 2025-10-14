@@ -23,21 +23,23 @@ export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    // Cria a nova aula no banco, garantindo que os dados numéricos sejam convertidos
     const newClass = await prisma.class.create({
       data: {
         name: data.name,
-        dayOfWeek: parseInt(data.dayOfWeek, 10), // Converte string do formulário para número
+        dayOfWeek: parseInt(data.dayOfWeek, 10),
         startTime: data.startTime,
         endTime: data.endTime,
-        maxCapacity: parseInt(data.maxCapacity, 10), // Converte string do formulário para número
+        maxCapacity: parseInt(data.maxCapacity, 10),
       },
     });
-     // Retorna a nova aula com a contagem de matrículas (que será 0)
+
+    // LINHA CORRIGIDA: Nós adicionamos manualmente a propriedade _count
+    // ao objeto antes de enviá-lo de volta para o front-end.
     const newClassWithCount = {
         ...newClass,
         _count: { bookings: 0 },
     };
+
     return NextResponse.json(newClassWithCount, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: 'Erro ao criar aula.' }, { status: 500 });
