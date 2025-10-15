@@ -7,18 +7,7 @@ import { Trash2 } from 'lucide-react';
 import { useAppContext } from '@/context/app-context';
 import type { Member } from '@/lib/types';
 import { toast } from 'sonner';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 export function MembersTable() {
   const { state, dispatch } = useAppContext();
@@ -43,7 +32,7 @@ export function MembersTable() {
   };
 
   return (
-    <Card className="border-t-4 border-primary">
+    <Card className="card-hover-lift">
       <CardHeader>
         <CardTitle>Alunos Cadastrados</CardTitle>
       </CardHeader>
@@ -67,8 +56,8 @@ export function MembersTable() {
                   <TableCell className="text-right">
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                            <Trash2 className="h-4 w-4 text-red-500" />
+                        <Button variant="ghost" size="icon" className="cursor-pointer transition-transform hover:scale-110">
+                            <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>

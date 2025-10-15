@@ -72,7 +72,7 @@ export function AddBookingForm() {
                   </SelectContent>
                 </Select><FormMessage /></FormItem>
             )} />
-            <Button type="submit" disabled={form.formState.isSubmitting}>
+            <Button type="submit" disabled={form.formState.isSubmitting} className="w-full font-bold text-lg py-6 shadow-lg transition-transform duration-200 hover:scale-105">
               {form.formState.isSubmitting ? 'Matriculando...' : 'Confirmar Matrícula'}
             </Button>
           </form>

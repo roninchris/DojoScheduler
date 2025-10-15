@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { FieldValues } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -22,16 +23,10 @@ const weekDays = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Q
 
 export function AddClassForm() {
   const { dispatch } = useAppContext();
-  type FormValues = z.infer<typeof formSchema>;
-  const form = useForm<FormValues>({
+  type FormSchemaType = z.infer<typeof formSchema>;
+  const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema) as any,
-    defaultValues: {
-      name: '',
-      dayOfWeek: '',
-      startTime: '',
-      endTime: '',
-      maxCapacity: 10,
-    },
+    defaultValues: { name: '', dayOfWeek: '', startTime: '', endTime: '', maxCapacity: 10 },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -58,53 +53,32 @@ export function AddClassForm() {
     <Card className="border-t-4 border-primary">
       <CardHeader><CardTitle>Criar Nova Aula</CardTitle></CardHeader>
       <CardContent>
-        {/* O componente <Form> apenas "envelopa" o formulário */}
-        <Form {...form}>
-          {/* O onSubmit e className vão na tag <form> HTML */}
+        <Form<z.infer<typeof formSchema>> {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField control={form.control} name="name" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nome da Aula</FormLabel>
-                <FormControl><Input placeholder="Ex: Karatê Kids" {...field} /></FormControl>
-                <FormMessage />
-              </FormItem>
+              <FormItem><FormLabel>Nome da Aula</FormLabel><FormControl><Input placeholder="Ex: Karatê Kids" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="dayOfWeek" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Dia da Semana</FormLabel>
+              <FormItem><FormLabel>Dia da Semana</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl><SelectTrigger><SelectValue placeholder="Selecione o dia" /></SelectTrigger></FormControl>
                   <SelectContent>
                     {weekDays.map((day, index) => <SelectItem key={index} value={String(index)}>{day}</SelectItem>)}
                   </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
+                </Select><FormMessage /></FormItem>
             )} />
             <div className="grid grid-cols-2 gap-4">
               <FormField control={form.control} name="startTime" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Início</FormLabel>
-                  <FormControl><Input placeholder="HH:MM" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
+                <FormItem><FormLabel>Início</FormLabel><FormControl><Input placeholder="HH:MM" {...field} /></FormControl><FormMessage /></FormItem>
               )} />
               <FormField control={form.control} name="endTime" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Fim</FormLabel>
-                  <FormControl><Input placeholder="HH:MM" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
+                <FormItem><FormLabel>Fim</FormLabel><FormControl><Input placeholder="HH:MM" {...field} /></FormControl><FormMessage /></FormItem>
               )} />
             </div>
             <FormField control={form.control} name="maxCapacity" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Vagas</FormLabel>
-                <FormControl><Input type="number" placeholder="10" {...field} /></FormControl>
-                <FormMessage />
-              </FormItem>
+              <FormItem><FormLabel>Vagas</FormLabel><FormControl><Input type="number" placeholder="10" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
-            <Button type="submit" disabled={form.formState.isSubmitting}>
+            <Button type="submit" disabled={form.formState.isSubmitting} className="w-full font-bold text-lg py-6 shadow-lg transition-transform duration-200 hover:scale-105">
               {form.formState.isSubmitting ? 'Salvando...' : 'Salvar Aula'}
             </Button>
           </form>

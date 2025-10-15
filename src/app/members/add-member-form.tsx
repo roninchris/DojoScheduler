@@ -18,7 +18,6 @@ const formSchema = z.object({
 
 export function AddMemberForm() {
   const { dispatch } = useAppContext();
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { name: '', email: '', phone: '' },
@@ -47,7 +46,7 @@ export function AddMemberForm() {
   }
 
   return (
-    <Card className="border-t-4 border-primary">
+    <Card className="card-hover-lift">
       <CardHeader>
         <CardTitle>Cadastrar Novo Aluno</CardTitle>
       </CardHeader>
@@ -55,33 +54,15 @@ export function AddMemberForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField control={form.control} name="name" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nome Completo</FormLabel>
-                <FormControl>
-                  <Input placeholder="Ex: Miyamoto Musashi" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <FormItem><FormLabel>Nome Completo</FormLabel><FormControl><Input placeholder="Ex: Miyamoto Musashi" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="email" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="aluno@email.com" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <FormItem><FormLabel>Email</FormLabel><FormControl><Input placeholder="aluno@email.com" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="phone" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Celular</FormLabel>
-                <FormControl>
-                  <Input placeholder="(99) 99999-9999" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <FormItem><FormLabel>Celular</FormLabel><FormControl><Input placeholder="(99) 99999-9999" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
-            <Button type="submit" disabled={form.formState.isSubmitting}>
+            <Button type="submit" disabled={form.formState.isSubmitting} className="w-full font-semibold transition-transform duration-200 hover:scale-[1.03] cursor-pointer" size="lg">
               {form.formState.isSubmitting ? 'Salvando...' : 'Salvar Aluno'}
             </Button>
           </form>

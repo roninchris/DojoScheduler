@@ -1,14 +1,13 @@
-// File: tailwind.config.ts
 import type { Config } from "tailwindcss"
 
 const config = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+    ],
   prefix: "",
   theme: {
     container: {
@@ -18,48 +17,47 @@ const config = {
     },
     extend: {
       colors: {
-        border: 'oklch(88% 0.008 30)',
-        input: 'oklch(90% 0.008 30)',
-        ring: 'oklch(52% 0.24 25)',
-        background: 'oklch(97% 0.008 30)',
-        foreground: 'oklch(15% 0.015 30)',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: 'oklch(52% 0.24 25)',
-          foreground: 'oklch(100% 0 0)',
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
-          DEFAULT: 'oklch(94% 0.01 30)',
-          foreground: 'oklch(15% 0.015 30)',
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
         destructive: {
-          DEFAULT: 'oklch(48% 0.26 25)',
-          foreground: 'oklch(100% 0 0)',
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
         },
         muted: {
-          DEFAULT: 'oklch(95% 0.008 30)',
-          foreground: 'oklch(50% 0.01 30)',
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'oklch(95% 0.03 25)',
-          foreground: 'oklch(48% 0.24 25)',
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
         popover: {
-          DEFAULT: 'oklch(100% 0 0)',
-          foreground: 'oklch(15% 0.015 30)',
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
         },
         card: {
-          DEFAULT: 'oklch(100% 0 0)',
-          foreground: 'oklch(15% 0.015 30)',
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
         },
       },
       borderRadius: {
-        lg: "1rem",
-        md: "0.75rem",
-        sm: "0.5rem",
+        lg: "0.75rem",
+        md: "0.5rem",
+        sm: "0.375rem",
       },
       boxShadow: {
-        'red': '0 10px 40px -5px rgb(220 38 38 / 0.4), 0 4px 8px -2px rgb(220 38 38 / 0.25)',
-        'red-lg': '0 20px 60px -10px rgb(220 38 38 / 0.5), 0 8px 16px -4px rgb(220 38 38 / 0.3)',
+        'red': '0 10px 30px -5px rgb(220 38 38 / 0.3), 0 4px 6px -2px rgb(220 38 38 / 0.2)',
       },
       keyframes: {
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
