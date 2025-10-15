@@ -1,4 +1,4 @@
-# Dojo Scheduler 🥋
+# ⛩️ Dojo Scheduler ⛩️
 
 ![Status do Projeto](https://img.shields.io/badge/status-concluído-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
@@ -76,21 +76,30 @@ Siga os passos abaixo para executar o projeto em seu ambiente local.
     npm install
     ```
 
-3.  **Configure o Banco de Dados:**
+3.  **Configure as Variáveis de Ambiente:**
+    ```sh 
+    copy .env.example .env
+    ```
+ou se estiver no linux:
+```sh 
+    cp .env.example .env
+```
+
+4.  **Configure o Banco de Dados:**
     O Prisma precisa criar e popular o banco de dados SQLite.
     ```sh
-    npx prisma migrate dev --name init
+    npx prisma migrate dev
     ```
     Este comando irá:
     *   Criar o arquivo do banco de dados em `prisma/dev.db`.
     *   Aplicar o schema definido em `prisma/schema.prisma`.
 
-4.  **Inicie o servidor de desenvolvimento:**
+5.  **Inicie o servidor de desenvolvimento:**
     ```sh
     npm run dev
     ```
 
-5.  Abra [http://localhost:3000](http://localhost:3000) em seu navegador para ver a aplicação.
+6.  Abra [http://localhost:3000](http://localhost:3000) em seu navegador para ver a aplicação.
 
 ---
 
