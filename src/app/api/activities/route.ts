@@ -26,19 +26,19 @@ export async function GET() {
 
     // Mapeia cada tipo de evento para um formato unificado
     const activities = [
-      ...latestMembers.map(m => ({
+      ...latestMembers.map((m: { id: number; name: string; createdAt: Date }) => ({
         id: m.id,
         type: 'ADD_MEMBER',
-        description: `${m.name} foi cadastrado(a).`,
+        description: `${m.name} foi registrado(a).`,
         timestamp: m.createdAt,
       })),
-      ...latestClasses.map(c => ({
+      ...latestClasses.map((c: { id: number; name: string; createdAt: Date }) => ({
         id: c.id,
         type: 'ADD_CLASS',
         description: `A aula "${c.name}" foi criada.`,
         timestamp: c.createdAt,
       })),
-      ...latestBookings.map(b => ({
+      ...latestBookings.map((b: { id: number; member: { name: string }; class: { name: string }; createdAt: Date }) => ({
         id: b.id,
         type: 'ADD_BOOKING',
         description: `${b.member.name} se matriculou em "${b.class.name}".`,
