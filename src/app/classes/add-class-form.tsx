@@ -55,7 +55,7 @@ export function AddClassForm() {
   }
 
   return (
-    <Card>
+    <Card className="border-t-4 border-primary">
       <CardHeader><CardTitle>Criar Nova Aula</CardTitle></CardHeader>
       <CardContent>
         {/* O componente <Form> apenas "envelopa" o formulário */}

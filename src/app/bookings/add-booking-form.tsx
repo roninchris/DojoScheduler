@@ -45,7 +45,7 @@ export function AddBookingForm() {
   }
 
   return (
-    <Card>
+    <Card className="border-t-4 border-primary">
       <CardHeader><CardTitle>Nova Matrícula</CardTitle></CardHeader>
       <CardContent>
         <Form {...form}>

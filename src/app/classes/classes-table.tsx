@@ -27,7 +27,7 @@ export function ClassesTable() {
   };
 
   return (
-    <Card>
+    <Card className="border-t-4 border-primary">
       <CardHeader><CardTitle>Aulas da Semana</CardTitle></CardHeader>
       <CardContent>
         <Table>

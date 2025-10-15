@@ -26,7 +26,7 @@ export function BookingsTable() {
   };
 
   return (
-    <Card>
+    <Card className="border-t-4 border-primary">
       <CardHeader><CardTitle>Matrículas Realizadas</CardTitle></CardHeader>
       <CardContent>
         <Table>

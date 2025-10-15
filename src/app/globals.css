@@ -1,122 +1,285 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+@theme {
+  /* Martial Arts Red & White Theme */
+  --color-background: oklch(98% 0.005 30);
+  --color-foreground: oklch(20% 0.01 30);
+  
+  /* Card with subtle warmth */
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(20% 0.01 30);
+  
+  /* Popover */
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(20% 0.01 30);
+  
+  /* Vibrant martial arts red (like a red belt) */
+  --color-primary: oklch(55% 0.22 25);
+  --color-primary-foreground: oklch(100% 0 0);
+  
+  /* Soft neutral secondary */
+  --color-secondary: oklch(95% 0.005 30);
+  --color-secondary-foreground: oklch(20% 0.01 30);
+  
+  /* Muted tones */
+  --color-muted: oklch(96% 0.005 30);
+  --color-muted-foreground: oklch(55% 0.01 30);
+  
+  /* Accent red */
+  --color-accent: oklch(96% 0.02 25);
+  --color-accent-foreground: oklch(50% 0.22 25);
+  
+  /* Destructive (darker red) */
+  --color-destructive: oklch(50% 0.25 25);
+  --color-destructive-foreground: oklch(100% 0 0);
+  
+  /* Borders - subtle gray */
+  --color-border: oklch(90% 0.005 30);
+  --color-input: oklch(92% 0.005 30);
+  --color-ring: oklch(55% 0.22 25);
+  
+  /* Radius - sharp like martial arts movements */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  
+  /* Enhanced shadows with warmth */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+  --shadow-xl: 0 20px 25px -5px rgb(220 38 38 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+  --shadow-red: 0 10px 30px -5px rgb(220 38 38 / 0.3), 0 4px 6px -2px rgb(220 38 38 / 0.2);
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
-
+/* Dark mode variables */
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --color-background: oklch(18% 0.01 30);
+  --color-foreground: oklch(95% 0.005 30);
+  --color-card: oklch(22% 0.01 30);
+  --color-card-foreground: oklch(95% 0.005 30);
+  --color-popover: oklch(22% 0.01 30);
+  --color-popover-foreground: oklch(95% 0.005 30);
+  --color-primary: oklch(60% 0.24 25);
+  --color-primary-foreground: oklch(100% 0 0);
+  --color-secondary: oklch(28% 0.01 30);
+  --color-secondary-foreground: oklch(95% 0.005 30);
+  --color-muted: oklch(28% 0.01 30);
+  --color-muted-foreground: oklch(65% 0.01 30);
+  --color-accent: oklch(30% 0.05 25);
+  --color-accent-foreground: oklch(70% 0.20 25);
+  --color-destructive: oklch(55% 0.22 25);
+  --color-destructive-foreground: oklch(100% 0 0);
+  --color-border: oklch(28% 0.01 30);
+  --color-input: oklch(28% 0.01 30);
+  --color-ring: oklch(60% 0.24 25);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(220 38 38 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.6);
+  --shadow-red: 0 10px 30px -5px rgb(239 68 68 / 0.4), 0 4px 6px -2px rgb(239 68 68 / 0.3);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  color: var(--color-foreground);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Martial Arts inspired card with red accent */
+.card {
+  background-color: var(--color-card);
+  color: var(--color-card-foreground);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-red);
+  transform: translateY(-4px);
+  border-top-color: oklch(60% 0.24 25);
+}
+
+/* Strong button design */
+.btn {
+  border-radius: var(--radius-md);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.btn:active::before {
+  width: 400px;
+  height: 400px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Sharp input design */
+.input {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-input);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.input:focus {
+  border-color: var(--color-ring);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ring) 15%, transparent);
+  transform: translateY(-1px);
+}
+
+/* Dojo badge style */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--color-primary), oklch(50% 0.24 25));
+  color: var(--color-primary-foreground);
+  box-shadow: var(--shadow-sm);
+  letter-spacing: 0.025em;
+}
+
+/* Glass effect for overlays */
+.glass {
+  background: color-mix(in srgb, var(--color-background) 85%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+}
+
+/* Martial arts inspired gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, 
+    var(--color-primary), 
+    oklch(60% 0.24 25),
+    oklch(45% 0.20 25)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Strike animation for emphasis */
+.strike-in {
+  animation: strikeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes strikeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.95);
   }
-  body {
-    @apply bg-background text-foreground;
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
   }
+}
+
+/* Fade in animation */
+.animate-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Red glow effect for important elements */
+.glow-red {
+  box-shadow: 0 0 25px color-mix(in srgb, var(--color-primary) 50%, transparent),
+              0 0 50px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+/* Power hover lift */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Stats card styling */
+.stats-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), oklch(60% 0.24 25));
+}
+
+/* Red divider */
+.divider-red {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    var(--color-primary),
+    transparent
+  );
+  margin: 2rem 0;
 }

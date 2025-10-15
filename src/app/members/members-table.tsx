@@ -43,7 +43,7 @@ export function MembersTable() {
   };
 
   return (
-    <Card>
+    <Card className="border-t-4 border-primary">
       <CardHeader>
         <CardTitle>Alunos Cadastrados</CardTitle>
       </CardHeader>

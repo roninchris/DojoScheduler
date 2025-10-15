@@ -47,7 +47,7 @@ export function AddMemberForm() {
   }
 
   return (
-    <Card>
+    <Card className="border-t-4 border-primary">
       <CardHeader>
         <CardTitle>Cadastrar Novo Aluno</CardTitle>
       </CardHeader>
