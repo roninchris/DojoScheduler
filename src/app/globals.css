@@ -4,55 +4,36 @@
   /* Martial Arts Red & White Theme */
   --color-background: oklch(98% 0.005 30);
   --color-foreground: oklch(20% 0.01 30);
-  
-  /* Card with subtle warmth */
   --color-card: oklch(100% 0 0);
   --color-card-foreground: oklch(20% 0.01 30);
-  
-  /* Popover */
   --color-popover: oklch(100% 0 0);
   --color-popover-foreground: oklch(20% 0.01 30);
-  
-  /* Vibrant martial arts red (like a red belt) */
   --color-primary: oklch(55% 0.22 25);
   --color-primary-foreground: oklch(100% 0 0);
-  
-  /* Soft neutral secondary */
   --color-secondary: oklch(95% 0.005 30);
   --color-secondary-foreground: oklch(20% 0.01 30);
-  
-  /* Muted tones */
   --color-muted: oklch(96% 0.005 30);
   --color-muted-foreground: oklch(55% 0.01 30);
-  
-  /* Accent red */
   --color-accent: oklch(96% 0.02 25);
   --color-accent-foreground: oklch(50% 0.22 25);
-  
-  /* Destructive (darker red) */
   --color-destructive: oklch(50% 0.25 25);
   --color-destructive-foreground: oklch(100% 0 0);
-  
-  /* Borders - subtle gray */
   --color-border: oklch(90% 0.005 30);
   --color-input: oklch(92% 0.005 30);
   --color-ring: oklch(55% 0.22 25);
   
-  /* Radius - sharp like martial arts movements */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   
-  /* Enhanced shadows with warmth */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
   --shadow-xl: 0 20px 25px -5px rgb(220 38 38 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.08);
-  --shadow-red: 0 10px 30px -5px rgb(220 38 38 / 0.3), 0 4px 6px -2px rgb(220 38 38 / 0.2);
-  --shadow-red-glow: 0 0 40px rgb(220 38 38 / 0.4), 0 10px 30px -5px rgb(220 38 38 / 0.3);
+  --shadow-red: 0 10px 20px -5px rgb(220 38 38 / 0.25), 0 4px 6px -2px rgb(220 38 38 / 0.2);
+  --shadow-red-glow: 0 0 30px -5px rgb(220 38 38 / 0.35);
 }
 
-/* Dark mode variables */
 .dark {
   --color-background: oklch(18% 0.01 30);
   --color-foreground: oklch(95% 0.005 30);
@@ -76,9 +57,9 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.4);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.5);
-  --shadow-xl: 0 20px 25px -5px rgb(220 38 38 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.6);
-  --shadow-red: 0 10px 30px -5px rgb(239 68 68 / 0.4), 0 4px 6px -2px rgb(239 68 68 / 0.3);
-  --shadow-red-glow: 0 0 40px rgb(239 68 68 / 0.5), 0 10px 30px -5px rgb(239 68 68 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(239 68 68 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.6);
+  --shadow-red: 0 10px 20px -5px rgb(239 68 68 / 0.3), 0 4px 6px -2px rgb(239 68 68 / 0.25);
+  --shadow-red-glow: 0 0 30px -5px rgb(239 68 68 / 0.4);
 }
 
 * {
@@ -111,32 +92,27 @@ html {
   border-radius: var(--radius-sm);
 }
 
-/* Martial Arts inspired card with red accent */
+/* Base interactive cursor for all clickable elements */
+a, button, [role="button"], [role="combobox"], [role="option"], select, .cursor-pointer {
+  cursor: pointer;
+}
+
+/* Card Styling */
 .card {
   background-color: var(--color-card);
   color: var(--color-card-foreground);
   border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-primary);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: default;
 }
 
-.card:hover {
-  box-shadow: var(--shadow-red-glow);
-  transform: translateY(-6px);
-  border-top-color: oklch(60% 0.24 25);
-  border-top-width: 4px;
-}
-
-/* Card hover lift effect */
-.card-hover-lift {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Universal hover-lift effect for cards that should be interactive */
+.hover-lift {
   cursor: pointer;
 }
 
-.card-hover-lift:hover {
+.hover-lift:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: var(--shadow-red-glow);
 }
@@ -149,7 +125,6 @@ html {
   letter-spacing: 0.025em;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .btn::before {
@@ -160,22 +135,23 @@ html {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   transform: translate(-50%, -50%);
   transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
 }
 
-.btn:active::before {
-  width: 400px;
-  height: 400px;
-}
-
-.btn:hover {
+.btn:hover:not(:disabled) {
   transform: translateY(-3px) scale(1.02);
   box-shadow: var(--shadow-red);
 }
 
-.btn:active {
+.btn:active:not(:disabled)::before {
+  width: 400px;
+  height: 400px;
+}
+
+.btn:active:not(:disabled) {
   transform: translateY(-1px) scale(0.98);
 }
 
@@ -186,7 +162,6 @@ html {
   border-radius: var(--radius-md);
   transition: all 0.3s ease;
   font-weight: 500;
-  cursor: text;
 }
 
 .input:hover {
@@ -199,35 +174,7 @@ html {
   transform: translateY(-2px);
 }
 
-/* Dojo badge style */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  border-radius: var(--radius-sm);
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--color-primary), oklch(50% 0.24 25));
-  color: var(--color-primary-foreground);
-  box-shadow: var(--shadow-sm);
-  letter-spacing: 0.025em;
-  transition: all 0.3s ease;
-}
-
-.badge:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-md);
-}
-
-/* Glass effect for overlays */
-.glass {
-  background: color-mix(in srgb, var(--color-background) 85%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
-}
-
-/* Martial arts inspired gradient text */
+/* Gradient Text */
 .gradient-text {
   background: linear-gradient(135deg, 
     var(--color-primary), 
@@ -240,35 +187,15 @@ html {
   font-weight: 700;
 }
 
-/* Strike animation for emphasis */
-.strike-in {
-  animation: strikeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes strikeIn {
-  from {
-    opacity: 0;
-    transform: translateX(-30px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
 /* Fade in animation */
-.animate-in {
-  animation: fadeIn 0.6s ease-in-out;
-}
-
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-in-out;
+  animation: fadeIn 0.6s ease-in-out both;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -276,159 +203,18 @@ html {
   }
 }
 
-/* Red glow effect for important elements */
-.glow-red {
-  box-shadow: 0 0 25px color-mix(in srgb, var(--color-primary) 50%, transparent),
-              0 0 50px color-mix(in srgb, var(--color-primary) 20%, transparent);
-  animation: pulseGlow 2s ease-in-out infinite;
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 25px color-mix(in srgb, var(--color-primary) 50%, transparent),
-                0 0 50px color-mix(in srgb, var(--color-primary) 20%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 35px color-mix(in srgb, var(--color-primary) 60%, transparent),
-                0 0 70px color-mix(in srgb, var(--color-primary) 30%, transparent);
-  }
-}
-
-/* Power hover lift */
-.hover-lift {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.hover-lift:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-red-glow);
-}
-
-/* Stats card styling */
-.stats-card {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.stats-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), oklch(60% 0.24 25));
-  transition: height 0.3s ease;
-}
-
-.stats-card:hover::before {
-  height: 6px;
-}
-
-.stats-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-red-glow);
-}
-
-/* Red divider */
-.divider-red {
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent,
-    var(--color-primary),
-    transparent
-  );
-  margin: 2rem 0;
-}
-
-/* Table row hover effect */
-tbody tr {
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-tbody tr:hover {
-  background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
-  transform: translateX(4px);
-}
-
-/* Button icon animations */
-button svg {
-  transition: all 0.3s ease;
-}
-
-button:hover svg {
-  transform: scale(1.1);
-}
-
-/* Link hover effect */
-a {
-  transition: all 0.2s ease;
-}
-
-/* Select hover effect */
-select,
-[role="combobox"] {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-select:hover,
-[role="combobox"]:hover {
-  border-color: var(--color-ring);
-  transform: translateY(-2px);
-}
-
-/* Enhanced card with background glow */
-.card-with-glow {
-  position: relative;
-}
-
-.card-with-glow::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-md);
-  background: radial-gradient(circle at center, var(--color-primary) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(30px);
-}
-
-.card-with-glow:hover::after {
-  opacity: 0.3;
-}
-
-/* Smooth scroll animation */
-@keyframes smoothScroll {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-smooth-scroll {
-  animation: smoothScroll 0.6s ease-out;
-}
-
-/* Staggered animation for lists */
+/* Staggered animation for list items */
 .stagger-item {
-  animation: fadeInUp 0.5s ease-out backwards;
+  animation: fadeInUp 0.5s ease-out both;
 }
 
-.stagger-item:nth-child(1) { animation-delay: 0.1s; }
-.stagger-item:nth-child(2) { animation-delay: 0.2s; }
-.stagger-item:nth-child(3) { animation-delay: 0.3s; }
-.stagger-item:nth-child(4) { animation-delay: 0.4s; }
-.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(1) { animation-delay: 0.05s; }
+.stagger-item:nth-child(2) { animation-delay: 0.1s; }
+.stagger-item:nth-child(3) { animation-delay: 0.15s; }
+.stagger-item:nth-child(4) { animation-delay: 0.2s; }
+.stagger-item:nth-child(5) { animation-delay: 0.25s; }
+.stagger-item:nth-child(6) { animation-delay: 0.3s; }
+.stagger-item:nth-child(7) { animation-delay: 0.35s; }
 
 @keyframes fadeInUp {
   from {
@@ -441,11 +227,18 @@ select:hover,
   }
 }
 
-/* Interactive hover for images */
-img {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Table row hover effect */
+tbody tr {
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-img:hover {
-  transform: scale(1.05);
+tbody tr:hover {
+  background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
+  transform: translateX(4px);
+}
+
+/* Efeito de hover para cards que NÃO são clicáveis */
+.hover-lift-static:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
 }

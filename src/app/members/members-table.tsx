@@ -16,14 +16,8 @@ export function MembersTable() {
   const handleDelete = async (member: Member) => {
     toast.info(`Deletando ${member.name}...`);
     try {
-        const response = await fetch(`/api/members/${member.id}`, {
-            method: 'DELETE',
-        });
-
-        if (!response.ok) {
-            throw new Error('Falha ao deletar aluno.');
-        }
-
+        const response = await fetch(`/api/members/${member.id}`, { method: 'DELETE' });
+        if (!response.ok) throw new Error('Falha ao deletar aluno.');
         dispatch({ type: 'DELETE_MEMBER', payload: member.id });
         toast.success(`${member.name} foi deletado(a) com sucesso!`);
     } catch (error: any) {
@@ -32,62 +26,57 @@ export function MembersTable() {
   };
 
   return (
-    <Card className="card-hover-lift">
+    <Card>
       <CardHeader>
         <CardTitle>Alunos Cadastrados</CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Nome</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Celular</TableHead>
-              <TableHead className="text-right">Ações</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {members.length > 0 ? (
-              members.map((member) => (
-                <TableRow key={member.id}>
-                  <TableCell className="font-medium">{member.name}</TableCell>
-                  <TableCell>{member.email}</TableCell>
-                  <TableCell>{member.phone}</TableCell>
-                  <TableCell className="text-right">
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="ghost" size="icon" className="cursor-pointer transition-transform hover:scale-110">
-                            <Trash2 className="h-4 w-4 text-destructive" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Você tem certeza?</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Esta ação não pode ser desfeita. Isso irá deletar permanentemente o aluno
-                            <span className='font-bold'> {member.name}</span> e todas as suas matrículas.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                          <AlertDialogAction onClick={() => handleDelete(member)}>
-                            Sim, deletar
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableCell colSpan={4} className="h-24 text-center">
-                  Nenhum aluno cadastrado.
-                </TableCell>
+                <TableHead className="min-w-[200px]">Nome</TableHead>
+                <TableHead className="min-w-[220px]">Email</TableHead>
+                <TableHead>Celular</TableHead>
+                <TableHead className="text-right">Ações</TableHead>
               </TableRow>
-            )}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {members.length > 0 ? (
+                members.map((member) => (
+                  <TableRow key={member.id}>
+                    <TableCell className="font-medium">{member.name}</TableCell>
+                    <TableCell>{member.email}</TableCell>
+                    <TableCell>{member.phone}</TableCell>
+                    <TableCell className="text-right">
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="ghost" size="icon" className="hover:bg-destructive/10 transition-colors">
+                              <Trash2 className="h-4 w-4 text-destructive" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Você tem certeza?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Esta ação não pode ser desfeita. Isso irá deletar permanentemente o aluno <span className='font-bold'>{member.name}</span> e todas as suas matrículas.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                            <AlertDialogAction onClick={() => handleDelete(member)}>Sim, deletar</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow><TableCell colSpan={4} className="h-24 text-center">Nenhum aluno cadastrado.</TableCell></TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </CardContent>
     </Card>
   );

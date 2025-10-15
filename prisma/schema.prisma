@@ -8,13 +8,14 @@ datasource db {
 }
 
 model Member {
-  id        String    @id @default(cuid())
+  id        String    @id @default(uuid())
   name      String
   email     String    @unique
   phone     String
-  createdAt DateTime  @default(now())
   bookings  Booking[]
+  createdAt DateTime  @default(now()) 
 }
+
 
 model Class {
   id          String    @id @default(cuid())
@@ -28,12 +29,10 @@ model Class {
 }
 
 model Booking {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   member    Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
   memberId  String
   class     Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
   classId   String
   createdAt DateTime @default(now())
-
-  @@unique([memberId, classId])
 }

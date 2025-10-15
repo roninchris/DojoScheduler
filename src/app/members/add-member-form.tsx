@@ -12,8 +12,12 @@ import { toast } from 'sonner';
 
 const formSchema = z.object({
   name: z.string().min(3, { message: 'O nome deve ter pelo menos 3 caracteres.' }),
-  email: z.string().email({ message: 'Por favor, insira um email válido.' }),
-  phone: z.string().min(8, { message: 'O telefone deve ter pelo menos 8 caracteres.' }),
+  email: z.string()
+    .email({ message: 'Formato de email inválido.' })
+    .regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, { 
+      message: 'Por favor, insira um email válido (ex: aluno@email.com).' 
+    }),
+  phone: z.string().min(14, { message: 'O telefone deve estar completo.' }),
 });
 
 export function AddMemberForm() {
@@ -46,7 +50,7 @@ export function AddMemberForm() {
   }
 
   return (
-    <Card className="card-hover-lift">
+    <Card className="hover-lift transition-all duration-300">
       <CardHeader>
         <CardTitle>Cadastrar Novo Aluno</CardTitle>
       </CardHeader>
@@ -60,9 +64,27 @@ export function AddMemberForm() {
               <FormItem><FormLabel>Email</FormLabel><FormControl><Input placeholder="aluno@email.com" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="phone" render={({ field }) => (
-              <FormItem><FormLabel>Celular</FormLabel><FormControl><Input placeholder="(99) 99999-9999" {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem>
+                <FormLabel>Celular</FormLabel>
+                <FormControl>
+                  <Input 
+                    placeholder="(99) 99999-9999" 
+                    {...field} 
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, '');
+                      const formattedValue = value
+                        .replace(/^(\d{2})(\d)/g, '($1) $2')
+                        .replace(/(\d{5})(\d)/, '$1-$2')
+                        .slice(0, 15);
+                      field.onChange(formattedValue);
+                    }} 
+                    maxLength={15}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )} />
-            <Button type="submit" disabled={form.formState.isSubmitting} className="w-full font-semibold transition-transform duration-200 hover:scale-[1.03] cursor-pointer" size="lg">
+            <Button type="submit" disabled={form.formState.isSubmitting} className="w-full font-semibold btn" size="lg">
               {form.formState.isSubmitting ? 'Salvando...' : 'Salvar Aluno'}
             </Button>
           </form>

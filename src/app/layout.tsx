@@ -6,6 +6,8 @@ import { AppProvider } from '@/context/app-context';
 import { Toaster } from '@/components/ui/sonner';
 import { Sidebar } from '@/components/layout/sidebar';
 import { ThemeProvider } from '@/components/theme-provider';
+import { MobileHeader } from '@/components/layout/mobile-header';
+
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -31,12 +33,14 @@ export default function RootLayout({
           <AppProvider>
             <div className="flex min-h-screen w-full">
               <Sidebar />
-              {/* [MUDANÇA] Adicionado um wrapper para limitar a largura e centralizar */}
-              <main className="flex-1 p-6 sm:p-8 overflow-auto">
-                <div className="mx-auto max-w-7xl">
-                  {children}
-                </div>
-              </main>
+              <div className="flex flex-col flex-1">
+                <MobileHeader />
+                <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-auto">
+                  <div className="mx-auto max-w-7xl">
+                    {children}
+                  </div>
+                </main>
+              </div>
             </div>
             <Toaster richColors position="top-right" />
           </AppProvider>

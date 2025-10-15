@@ -51,7 +51,7 @@ export function AddClassForm() {
   }
 
   return (
-    <Card className="card-with-glow border-t-4 border-primary shadow-xl animate-smooth-scroll">
+    <Card className="hover-lift transition-all duration-300">
       <CardHeader className="space-y-2">
         <div className="flex items-center gap-2">
           <div className="p-2 rounded-lg bg-primary/10">
@@ -73,13 +73,9 @@ export function AddClassForm() {
                   Nome da Aula
                 </FormLabel>
                 <FormControl>
-                  <Input 
-                    placeholder="Ex: Karatê Kids" 
-                    className="input transition-all duration-300 focus:scale-[1.02]" 
-                    {...field} 
-                  />
+                  <Input placeholder="Ex: Karatê Kids" className="input" {...field} />
                 </FormControl>
-                <FormMessage className="animate-fade-in" />
+                <FormMessage />
               </FormItem>
             )} />
             <FormField control={form.control} name="dayOfWeek" render={({ field }) => (
@@ -90,92 +86,52 @@ export function AddClassForm() {
                 </FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger className="transition-all duration-300 hover:border-primary/50">
-                      <SelectValue placeholder="Selecione o dia" />
-                    </SelectTrigger>
+                    <SelectTrigger><SelectValue placeholder="Selecione o dia" /></SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {weekDays.map((day, index) => (
-                      <SelectItem 
-                        key={index} 
-                        value={String(index)}
-                        className="cursor-pointer hover:bg-primary/10 transition-colors duration-200"
-                      >
-                        {day}
-                      </SelectItem>
+                      <SelectItem key={index} value={String(index)}>{day}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <FormMessage className="animate-fade-in" />
+                <FormMessage />
               </FormItem>
             )} />
             <div className="grid grid-cols-2 gap-4">
               <FormField control={form.control} name="startTime" render={({ field }) => (
                 <FormItem className="space-y-2">
                   <FormLabel className="flex items-center gap-2 font-semibold">
-                    <Clock className="h-4 w-4 text-primary" />
-                    Início
+                    <Clock className="h-4 w-4 text-primary" /> Início
                   </FormLabel>
-                  <FormControl>
-                    <Input 
-                      placeholder="HH:MM" 
-                      className="input transition-all duration-300 focus:scale-[1.02]" 
-                      {...field} 
-                    />
-                  </FormControl>
-                  <FormMessage className="animate-fade-in" />
+                  <FormControl><Input placeholder="HH:MM" className="input" {...field} /></FormControl>
+                  <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="endTime" render={({ field }) => (
                 <FormItem className="space-y-2">
                   <FormLabel className="flex items-center gap-2 font-semibold">
-                    <Clock className="h-4 w-4 text-primary" />
-                    Fim
+                    <Clock className="h-4 w-4 text-primary" /> Fim
                   </FormLabel>
-                  <FormControl>
-                    <Input 
-                      placeholder="HH:MM" 
-                      className="input transition-all duration-300 focus:scale-[1.02]" 
-                      {...field} 
-                    />
-                  </FormControl>
-                  <FormMessage className="animate-fade-in" />
+                  <FormControl><Input placeholder="HH:MM" className="input" {...field} /></FormControl>
+                  <FormMessage />
                 </FormItem>
               )} />
             </div>
             <FormField control={form.control} name="maxCapacity" render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel className="flex items-center gap-2 font-semibold">
-                  <Users className="h-4 w-4 text-primary" />
-                  Capacidade Máxima
+                  <Users className="h-4 w-4 text-primary" /> Capacidade Máxima
                 </FormLabel>
-                <FormControl>
-                  <Input 
-                    type="number" 
-                    placeholder="10" 
-                    className="input transition-all duration-300 focus:scale-[1.02]" 
-                    {...field} 
-                  />
-                </FormControl>
-                <FormMessage className="animate-fade-in" />
+                <FormControl><Input type="number" placeholder="10" className="input" {...field} /></FormControl>
+                <FormMessage />
               </FormItem>
             )} />
-            <Button 
-              type="submit" 
-              disabled={form.formState.isSubmitting} 
-              className="btn w-full font-bold text-lg py-6 mt-2 relative overflow-hidden group"
-            >
-              <span className="relative z-10 flex items-center gap-2">
+            <Button type="submit" disabled={form.formState.isSubmitting} className="btn w-full font-bold text-lg py-6 mt-2">
+              <span className="flex items-center gap-2">
                 {form.formState.isSubmitting ? (
-                  <>
-                    <div className="h-5 w-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                    Salvando...
-                  </>
+                  <><div className="h-5 w-5 border-2 border-white/20 border-t-white rounded-full animate-spin" /> Salvando...</>
                 ) : (
-                  <>
-                    <BookCopy className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                    Salvar Aula
-                  </>
+                  <><BookCopy className="h-5 w-5" /> Salvar Aula</>
                 )}
               </span>
             </Button>

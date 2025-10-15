@@ -1,5 +1,64 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { memberId, classId } = body;
+
+    if (!memberId || !classId) {
+      return NextResponse.json({ message: 'Aluno e aula são obrigatórios.' }, { status: 400 });
+    }
+
+    // --- LÓGICA DE VERIFICAÇÃO ---
+    // Verifica se já existe uma matrícula para este aluno nesta aula
+    const existingBooking = await prisma.booking.findFirst({
+      where: {
+        memberId: memberId,
+        classId: classId,
+      },
+    });
+
+    if (existingBooking) {
+      // Se a matrícula já existe, retorna um erro de conflito (409)
+      return NextResponse.json({ message: 'Este aluno já está matriculado nesta aula.' }, { status: 409 });
+    }
+    // --- FIM DA VERIFICAÇÃO ---
+
+    // Verifica se a aula atingiu a capacidade máxima
+    const targetClass = await prisma.class.findUnique({
+        where: { id: classId },
+        include: { _count: { select: { bookings: true } } },
+    });
+
+    if (!targetClass) {
+        return NextResponse.json({ message: 'Aula não encontrada.' }, { status: 404 });
+    }
+    
+    if (targetClass._count.bookings >= targetClass.maxCapacity) {
+        return NextResponse.json({ message: 'Esta aula já atingiu a capacidade máxima.' }, { status: 400 });
+    }
+
+    // Se tudo estiver ok, cria a nova matrícula
+    const newBooking = await prisma.booking.create({
+      data: {
+        memberId,
+        classId,
+      },
+      include: {
+        member: true,
+        class: true,
+      }
+    });
+
+    return NextResponse.json(newBooking, { status: 201 });
+  } catch (error) {
+    console.error('Failed to create booking:', error);
+    return NextResponse.json({ message: 'Erro ao criar matrícula.' }, { status: 500 });
+  }
+}
 
 // GET /api/bookings - Lista todas as matrículas com dados do aluno e da aula
 export async function GET() {
@@ -13,39 +72,4 @@ export async function GET() {
         },
     });
     return NextResponse.json(bookings);
-}
-
-// POST /api/bookings - Cria uma nova matrícula
-export async function POST(request: Request) {
-    try {
-        const { memberId, classId } = await request.json();
-
-        // Passo 1: Verificar se a turma já está cheia antes de matricular
-        const classToBook = await prisma.class.findUnique({
-            where: { id: classId },
-            include: { _count: { select: { bookings: true } } },
-        });
-
-        if (!classToBook) {
-            return NextResponse.json({ message: 'Aula não encontrada.' }, { status: 404 });
-        }
-
-        if (classToBook._count.bookings >= classToBook.maxCapacity) {
-            return NextResponse.json({ message: 'Esta aula já atingiu a capacidade máxima.' }, { status: 409 });
-        }
-
-        // Passo 2: Criar a matrícula se houver vagas
-        const newBooking = await prisma.booking.create({
-            data: { memberId, classId },
-            include: { member: true, class: true } // Retorna a matrícula com os dados para o front-end
-        });
-        return NextResponse.json(newBooking, { status: 201 });
-
-    } catch (error: any) {
-        // Erro se o aluno já estiver matriculado nesta aula
-        if (error.code === 'P2002') {
-            return NextResponse.json({ message: 'Este aluno já está matriculado nesta aula.' }, { status: 409 });
-        }
-        return NextResponse.json({ message: 'Erro ao realizar matrícula.' }, { status: 500 });
-    }
 }
