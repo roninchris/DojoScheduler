@@ -49,6 +49,7 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
   --shadow-xl: 0 20px 25px -5px rgb(220 38 38 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.08);
   --shadow-red: 0 10px 30px -5px rgb(220 38 38 / 0.3), 0 4px 6px -2px rgb(220 38 38 / 0.2);
+  --shadow-red-glow: 0 0 40px rgb(220 38 38 / 0.4), 0 10px 30px -5px rgb(220 38 38 / 0.3);
 }
 
 /* Dark mode variables */
@@ -77,6 +78,7 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.5);
   --shadow-xl: 0 20px 25px -5px rgb(220 38 38 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.6);
   --shadow-red: 0 10px 30px -5px rgb(239 68 68 / 0.4), 0 4px 6px -2px rgb(239 68 68 / 0.3);
+  --shadow-red-glow: 0 0 40px rgb(239 68 68 / 0.5), 0 10px 30px -5px rgb(239 68 68 / 0.4);
 }
 
 * {
@@ -117,23 +119,37 @@ html {
   border-top: 3px solid var(--color-primary);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
 }
 
 .card:hover {
-  box-shadow: var(--shadow-red);
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-red-glow);
+  transform: translateY(-6px);
   border-top-color: oklch(60% 0.24 25);
+  border-top-width: 4px;
+}
+
+/* Card hover lift effect */
+.card-hover-lift {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-red-glow);
 }
 
 /* Strong button design */
 .btn {
   border-radius: var(--radius-md);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 600;
   letter-spacing: 0.025em;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .btn::before {
@@ -146,7 +162,7 @@ html {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.5s ease, height 0.5s ease;
+  transition: width 0.6s ease, height 0.6s ease;
 }
 
 .btn:active::before {
@@ -155,8 +171,12 @@ html {
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-red);
+}
+
+.btn:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 /* Sharp input design */
@@ -164,14 +184,19 @@ html {
   background-color: var(--color-background);
   border: 2px solid var(--color-input);
   border-radius: var(--radius-md);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   font-weight: 500;
+  cursor: text;
+}
+
+.input:hover {
+  border-color: color-mix(in srgb, var(--color-ring) 50%, var(--color-input));
 }
 
 .input:focus {
   border-color: var(--color-ring);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ring) 15%, transparent);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 /* Dojo badge style */
@@ -186,6 +211,12 @@ html {
   color: var(--color-primary-foreground);
   box-shadow: var(--shadow-sm);
   letter-spacing: 0.025em;
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
 }
 
 /* Glass effect for overlays */
@@ -211,13 +242,13 @@ html {
 
 /* Strike animation for emphasis */
 .strike-in {
-  animation: strikeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: strikeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes strikeIn {
   from {
     opacity: 0;
-    transform: translateX(-20px) scale(0.95);
+    transform: translateX(-30px) scale(0.9);
   }
   to {
     opacity: 1;
@@ -227,13 +258,17 @@ html {
 
 /* Fade in animation */
 .animate-in {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-in-out;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -245,22 +280,36 @@ html {
 .glow-red {
   box-shadow: 0 0 25px color-mix(in srgb, var(--color-primary) 50%, transparent),
               0 0 50px color-mix(in srgb, var(--color-primary) 20%, transparent);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px color-mix(in srgb, var(--color-primary) 50%, transparent),
+                0 0 50px color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 35px color-mix(in srgb, var(--color-primary) 60%, transparent),
+                0 0 70px color-mix(in srgb, var(--color-primary) 30%, transparent);
+  }
 }
 
 /* Power hover lift */
 .hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 .hover-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-red-glow);
 }
 
 /* Stats card styling */
 .stats-card {
   position: relative;
   overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .stats-card::before {
@@ -271,6 +320,16 @@ html {
   right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--color-primary), oklch(60% 0.24 25));
+  transition: height 0.3s ease;
+}
+
+.stats-card:hover::before {
+  height: 6px;
+}
+
+.stats-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-red-glow);
 }
 
 /* Red divider */
@@ -282,4 +341,111 @@ html {
     transparent
   );
   margin: 2rem 0;
+}
+
+/* Table row hover effect */
+tbody tr {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
+  transform: translateX(4px);
+}
+
+/* Button icon animations */
+button svg {
+  transition: all 0.3s ease;
+}
+
+button:hover svg {
+  transform: scale(1.1);
+}
+
+/* Link hover effect */
+a {
+  transition: all 0.2s ease;
+}
+
+/* Select hover effect */
+select,
+[role="combobox"] {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+select:hover,
+[role="combobox"]:hover {
+  border-color: var(--color-ring);
+  transform: translateY(-2px);
+}
+
+/* Enhanced card with background glow */
+.card-with-glow {
+  position: relative;
+}
+
+.card-with-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  background: radial-gradient(circle at center, var(--color-primary) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(30px);
+}
+
+.card-with-glow:hover::after {
+  opacity: 0.3;
+}
+
+/* Smooth scroll animation */
+@keyframes smoothScroll {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-smooth-scroll {
+  animation: smoothScroll 0.6s ease-out;
+}
+
+/* Staggered animation for lists */
+.stagger-item {
+  animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Interactive hover for images */
+img {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+img:hover {
+  transform: scale(1.05);
 }

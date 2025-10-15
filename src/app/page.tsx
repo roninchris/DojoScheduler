@@ -24,59 +24,58 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
+    <div className="flex flex-col gap-8 animate-fade-in">
       <div>
-        <h1 className="text-3xl font-bold text-foreground">Bem-vindo ao Dojo Scheduler</h1>
+        <h1 className="text-4xl font-bold text-foreground">Bem-vindo ao Dojo Scheduler</h1>
         <p className="text-muted-foreground mt-1">Gerencie seus alunos, aulas e agendamentos com facilidade.</p>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <Card className="shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-red">
+        <Card className="shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-red">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total de Alunos</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-base font-medium">Total de Alunos</CardTitle>
+            <Users className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{members.length}</div>
-            <p className="text-xs text-muted-foreground">membros ativos no sistema</p>
+            <div className="text-4xl font-bold">{members.length}</div>
+            <p className="text-sm text-muted-foreground">membros ativos no sistema</p>
           </CardContent>
         </Card>
-        <Card className="shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-red">
+        <Card className="shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-red">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total de Aulas</CardTitle>
-            <BookCopy className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-base font-medium">Total de Aulas</CardTitle>
+            <BookCopy className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{classes.length}</div>
-            <p className="text-xs text-muted-foreground">aulas disponíveis para agendamento</p>
+            <div className="text-4xl font-bold">{classes.length}</div>
+            <p className="text-sm text-muted-foreground">aulas disponíveis para agendamento</p>
           </CardContent>
         </Card>
       </div>
       
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card className="flex flex-col p-6 shadow-md">
-          <h2 className="text-xl font-semibold mb-2">Ações Rápidas</h2>
+        <Card className="flex flex-col p-6 shadow-lg">
+          <h2 className="text-2xl font-semibold mb-2">Ações Rápidas</h2>
           <p className="text-muted-foreground mb-6">Comece a organizar seu dojo agora mesmo.</p>
-          <div className="flex flex-col gap-3 mt-auto">
-            {/* [MUDANÇA] Usando asChild para combinar Link e Button corretamente */}
-            <Button asChild className="font-semibold transition-transform duration-200 hover:scale-[1.03]" size="lg">
-              <Link href="/members">
+          <div className="flex flex-col gap-4 mt-auto">
+            <Link href="/members" className="cursor-pointer">
+              <Button className="w-full font-bold text-lg py-6 shadow-lg transition-transform duration-200 hover:scale-105" size="lg">
                 <PlusCircle className="mr-2 h-5 w-5" /> Cadastrar Novo Aluno
-              </Link>
-            </Button>
-            <Button asChild variant="secondary" className="font-semibold transition-transform duration-200 hover:scale-[1.03]" size="lg">
-               <Link href="/classes">
+              </Button>
+            </Link>
+            <Link href="/classes" className="cursor-pointer">
+               <Button className="w-full font-bold text-lg py-6 shadow-md transition-transform duration-200 hover:scale-105" variant="secondary" size="lg">
                 <PlusCircle className="mr-2 h-5 w-5" /> Criar Nova Aula
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="font-semibold transition-transform duration-200 hover:scale-[1.03]" size="lg">
-              <Link href="/agenda">
+              </Button>
+            </Link>
+            <Link href="/agenda" className="cursor-pointer">
+              <Button className="w-full font-bold text-lg py-6 shadow-md transition-transform duration-200 hover:scale-105" variant="outline" size="lg">
                 <Calendar className="mr-2 h-5 w-5" /> Ver Agenda
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </Card>
-        <div className="relative rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-red-lg">
+        <div className="relative rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-red-lg">
           <Image
             src="https://placehold.co/600x400/1E1E1E/EDEDED?text=|"
             alt="Dojo"
@@ -85,8 +84,8 @@ export default function DashboardPage() {
             className="object-cover w-full h-full"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-          <div className="absolute bottom-0 left-0 p-6">
-            <h3 className="text-2xl font-bold text-white">Disciplina. Força. Respeito.</h3>
+          <div className="absolute bottom-0 left-0 p-8">
+            <h3 className="text-3xl font-bold text-white">Disciplina. Força. Respeito.</h3>
             <p className="text-white/80 mt-1">Os pilares do seu dojo, refletidos em sua gestão.</p>
           </div>
         </div>
