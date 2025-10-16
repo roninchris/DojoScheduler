@@ -1,6 +1,7 @@
 # ⛩️ Dojo Scheduler ⛩️
 
 ![Status do Projeto](https://img.shields.io/badge/status-concluído-brightgreen)
+![Testes](https://img.shields.io/badge/testes-23%20passando-success)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=white)
@@ -68,7 +69,7 @@ Siga os passos abaixo para executar o projeto em seu ambiente local.
 1.  **Clone o repositório:**
     ```sh
     git clone https://github.com/seu-usuario/dojo-scheduler.git
-    cd dojo-scheduler
+    cd DojoScheduler
     ```
 
 2.  **Instale as dependências:**
@@ -77,13 +78,11 @@ Siga os passos abaixo para executar o projeto em seu ambiente local.
     ```
 
 3.  **Configure as Variáveis de Ambiente:**
-    ```sh 
-    copy .env.example .env
-    ```
-ou se estiver no linux:
-```sh 
-    cp .env.example .env
-```
+   # Windows
+copy .env.example .env
+
+# Linux/Mac
+cp .env.example .env
 
 4.  **Configure o Banco de Dados:**
     O Prisma precisa criar e popular o banco de dados SQLite.
@@ -200,10 +199,27 @@ dojo-scheduler/
 
 ---
 
+## 🛠️ Padrões e Práticas
+
+* Arquitetura: Padrão MVC adaptado para Next.js
+* Testes: TDD (Test-Driven Development)
+* Versionamento: Git com commits semânticos
+* Validação: Zod schemas para validação de dados
+* Tipagem: TypeScript para type safety
+* Estilização: Tailwind CSS com design system consistente
+* Acessibilidade: Componentes Radix UI acessíveis por padrão
+
 ## 👨‍💻 Autor 
 
 *   **Christiansen Taques**
 *   **Projeto Integrador Transdisciplinar em Engenharia de Software II - UNIFRAN**
+
+---
+
+## 🙏 Agradecimentos
+
+- **À minha noiva** ❤️ - Por não ter ficado brava comigo quando eu virei várias madrugadas fazendo esse projeto. Te amo! 
+- **Amigos** - Pelas trocas de ideia e feedbacks que ajudaram a melhorar o projeto
 
 ---
 
