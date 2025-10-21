@@ -1,7 +1,7 @@
 # ⛩️ Dojo Scheduler ⛩️
 
 ![Status do Projeto](https://img.shields.io/badge/status-concluído-brightgreen)
-![Testes](https://img.shields.io/badge/testes-23%20passando-success)
+![Testes](https://img.shields.io/badge/testes-25%20passando-success)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=white)
@@ -22,7 +22,11 @@ O **Dojo Scheduler** foi criado para resolver a necessidade de uma ferramenta ce
 
 O projeto foi construído seguindo as melhores práticas de desenvolvimento, com uma arquitetura baseada em componentes, um backend robusto e um banco de dados relacional gerenciado por um ORM moderno.
 
+Toda a documentação técnica do projeto, incluindo diagramas UML e o dicionário de dados, pode ser encontrada na pasta [/documentation](./documentation/).
+
 ---
+
+
 
 ## ✨ Funcionalidades Principais
 
